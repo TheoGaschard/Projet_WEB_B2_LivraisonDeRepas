@@ -1,0 +1,23 @@
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="img/logo.png" width="175" height="175" class="d-inline-block align-top" alt="">
+        </a>
+
+                {% if (app.user) %}
+                <ul class="nav justify-content-end">
+                <li class="nav-item boutton"> {{ app.user.nom }} </li>
+                <li class="nav-item boutton"><a href="{{ path('app_logout')}}"><span class="uk-badge">Déconnexion</span></a></li>
+                </ul>
+
+
+                {% else %}
+        <ul class="nav justify-content-end">
+            <li class="nav-item boutton">
+                <button type="button" class="btn btn-secondary btn-lg"><img src="img/accueil.png" width="56" height="56" class="d-inline-block align-top" alt=""> Connexion</button>
+            </li>
+            <li class="nav-item boutton">
+                <button type="button" class="btn btn-secondary btn-lg"><img src="img/menu.png" width="56" height="56" class="d-inline-block align-top" alt=""> Menu</button>
+            </li>
+          </ul>
+                {% endif %}
+      </nav>

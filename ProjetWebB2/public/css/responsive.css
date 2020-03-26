@@ -1,0 +1,58 @@
+.background{
+    height: 500px;
+    background: url(img/fond.jpg) round;
+}
+
+.background-resto{
+    padding-bottom: 10%;
+}
+
+.title{
+    padding: 5%;
+    color: #000000;
+}
+
+.adress{
+    padding-left: 8%;
+}
+
+.boutton{
+    margin-left: 15px;
+}
+
+.social{
+    display: block;
+}
+
+.listSocial{
+    display: flex;
+}
+
+.flex{
+    flex: 1;
+}
+
+footer{
+    background-color: gray;
+}
+
+.carte{
+    display: grid;
+    margin: auto;
+    height: 300px;
+}
+
+
+@media screen and (max-width: 850px)
+
+{
+
+    .d-flex{
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .carte{
+        margin-bottom: 10%;
+    }
+}
