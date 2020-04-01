@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\RestaurantRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PlatRepository")
  */
-class Restaurant
+class Plat
 {
     /**
      * @ORM\Id()
@@ -27,24 +27,19 @@ class Restaurant
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $adresse;
-
-    /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(type="string", length=800)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(type="string", length=1500, nullable=true)
      */
     private $image;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $idRestaurateur;
+    private $prix;
 
     public function getId(): ?int
     {
@@ -75,18 +70,6 @@ class Restaurant
         return $this;
     }
 
-    public function getAdresse(): ?string
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(string $adresse): self
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -104,21 +87,21 @@ class Restaurant
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function getIdRestaurateur(): ?int
+    public function getPrix(): ?int
     {
-        return $this->idRestaurateur;
+        return $this->prix;
     }
 
-    public function setIdRestaurateur(int $idRestaurateur): self
+    public function setPrix(int $prix): self
     {
-        $this->idRestaurateur = $idRestaurateur;
+        $this->prix = $prix;
 
         return $this;
     }

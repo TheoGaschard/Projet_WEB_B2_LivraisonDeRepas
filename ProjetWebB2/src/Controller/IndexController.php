@@ -53,4 +53,24 @@ class IndexController extends AbstractController
     ]);
   }
 
+/**
+ * Redirect users after login based on the granted ROLE
+ * @Route("/login/redirect", name="_login_redirect")
+ */
+public function loginRedirectAction(Request $request)
+{
+    if($this->isGranted('ROLE_ADMIN'))
+    {
+        return $this->redirectToRoute('admin');
+    }
+    else if($this->isGranted('ROLE_RESTAURATEUR'))
+    {
+        return $this->redirectToRoute('restaurateur');
+    }
+    else
+    {
+        return $this->redirectToRoute('client');
+    }
+}
+
 }
