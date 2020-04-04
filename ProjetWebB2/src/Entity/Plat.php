@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PlatRepository")
@@ -37,9 +39,14 @@ class Plat
     private $image;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $prix;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $idRestaurant;
 
     public function getId(): ?int
     {
@@ -94,15 +101,32 @@ class Plat
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(int $prix): self
+    public function setPrix(float $prix): self
     {
         $this->prix = $prix;
 
         return $this;
+    }
+
+    public function getIdRestaurant(): ?int
+    {
+        return $this->idRestaurant;
+    }
+
+    public function setIdRestaurant(int $idRestaurant): self
+    {
+        $this->idRestaurant = $idRestaurant;
+
+        return $this;
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('prix', new Assert\Positive());
     }
 }

@@ -74,10 +74,6 @@ class RestaurantController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // $this->getDoctrine()->getManager()->flush();
 
-        $restaurant->setIdRestaurateur(
-        5
-        );      
-
 
       $em->persist($restaurant);
       $em->flush();

@@ -3,12 +3,11 @@
 {% block title %}Plat index{% endblock %}
 
 {% block body %}
-    <h1>Plat index</h1>
+    <h1>Les plats du restaurant {{ restaurant.nom }}</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Type</th>
                 <th>Description</th>
@@ -20,15 +19,14 @@
         <tbody>
         {% for plat in plats %}
             <tr>
-                <td>{{ plat.id }}</td>
                 <td>{{ plat.nom }}</td>
                 <td>{{ plat.type }}</td>
                 <td>{{ plat.description }}</td>
-                <td>{{ plat.image }}</td>
-                <td>{{ plat.prix }}</td>
+                <td><img src={{ plat.image }} alt="image resto" style="height: 50px;width: 50px;"/></td>
+                <td>{{ plat.prix }} €</td>
                 <td>
-                    <a href="{{ path('plat_show', {'id': plat.id}) }}">show</a>
-                    <a href="{{ path('plat_edit', {'id': plat.id}) }}">edit</a>
+                    <a href="{{ path('plat_show', {'id': restaurant.id, 'idPlat': plat.id} ) }}">Afficher</a>
+                    <a href="{{ path('plat_edit', {'id': restaurant.id, 'idPlat': plat.id} ) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('plat_new') }}">Create new</a>
+    <a href="{{ path('plat_new', {'id': restaurant.id}) }}">Créer un nouveau plat</a>
 {% endblock %}
