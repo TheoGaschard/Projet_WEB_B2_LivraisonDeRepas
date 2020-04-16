@@ -1,0 +1,6 @@
+Done:
+
+Fonctionnel en environnement de dev avec des fixtures
+Design simpliste
+Gestion basiques des fausses valeurs de formulaires
+fonctionne sur les deux PC
