@@ -42,13 +42,22 @@ footer{
     height: 300px;
 }
 
+.widthCard{
+    width: 265px;
+}
+
+.card-grid{
+    display: grid ;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 24px;
+}
 
 @media screen and (max-width: 850px)
 
 {
 
-    .d-flex{
-        display: flex !important;
+    .card-grid{
+        display: flex ;
         flex-direction: column;
     }
 

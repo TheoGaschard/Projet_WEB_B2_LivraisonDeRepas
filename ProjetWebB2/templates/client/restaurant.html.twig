@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ restaurant.nom }}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<!DOCTYPE html>
+    <head>
+        <title>{{ restaurant.nom }}</title>
+        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <meta charset="utf-8">
+    </head> 
+<body>
+
+
+
+      <div class="background-resto">
+
+        <h1 class="title">{{ restaurant.nom }}</h1>
+
+        <tbody>
+        {% for plat in plats %}
+
+            <li class="carte">
+                <div class="card widthCard">
+                <img src={{ plat.image }} class="card-img-top" alt="image resto" style="height: 50px;width: 50px;">
+                <div class="card-body">
+                <h5 class="card-title">{{ plat.nom }}</h5>
+                <p class="card-text">{{ plat.description }}}</p>
+                <p class="card-text">{{ plat.prix }} €</p>
+                </div>
+                </div>
+            </li>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+      </div>
+
+
+
+</body>
+</html>
+
+{% endblock %}

@@ -22,16 +22,19 @@
 
         <h1 class="title">Nos restaurants proche de chez vous.</h1>
 
-        <ul class="d-flex">
+        <ul class="card-grid">
             {% for restaurant in restaurants %}
-        <li class="carte"><div class="card" style="max-width: 265px;">
-                <img src={{ restaurant.image }} class="card-img-top" width="150" height="150" alt="tacos">
-                <div class="card-body">
-                <h5 class="card-title">{{ restaurant.nom }}</h5>
-                <p class="card-text">{{ restaurant.description }}</p>
-                </div>
-            </div>
-        </li>
+            <a href="{{ path('restaurant', {'id': restaurant.id}) }}">
+                <li class="carte">
+                    <div class="card widthCard">
+                    <img src={{ restaurant.image }} class="card-img-top" width="150" height="150" alt="tacos">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ restaurant.nom }}</h5>
+                    <p class="card-text">{{ restaurant.description }}</p>
+                    </div>
+                    </div>
+                </li>
+            </a>
             {% endfor %}
         </ul>
 
