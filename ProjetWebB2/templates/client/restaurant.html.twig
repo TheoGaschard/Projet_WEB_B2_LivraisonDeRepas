@@ -23,6 +23,7 @@
         <h1 class="title">{{ restaurant.nom }}</h1>
 
         <tbody>
+            <ul class="card-grid">
         {% for plat in plats %}
 
             <li class="carte">
@@ -30,16 +31,21 @@
                 <img src={{ plat.image }} class="card-img-top" alt="image resto" style="height: 50px;width: 50px;">
                 <div class="card-body">
                 <h5 class="card-title">{{ plat.nom }}</h5>
-                <p class="card-text">{{ plat.description }}}</p>
+                <p class="card-text">{{ plat.description }}</p>
                 <p class="card-text">{{ plat.prix }} €</p>
-                </div>
+                    <a href="{{ path('panier_add', {'id': restaurant.id, 'idPlat' : plat.id }) }}" class="btn btn-success float-right">
+                        <i class="fas fa-shopping-cart mr-1"></i>
+                        Ajouter au panier
+                    </a>                
+                    </div>
                 </div>
             </li>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Ce restaurant ne possède pas encore de plats</td>
             </tr>
         {% endfor %}
+            </ul>
         </tbody>
 
       </div>

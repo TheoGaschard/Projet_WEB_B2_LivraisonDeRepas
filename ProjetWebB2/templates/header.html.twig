@@ -10,8 +10,53 @@
                 {% if (app.user) %}
             
                 <ul class="nav justify-content-end">
-                <li class="nav-item boutton"> {{ app.user.nom }} </li>
+                <li class="nav-item boutton">Bonjour {{ app.user.nom }} </li>
                 <li class="nav-item boutton"><a href="{{ path('app_logout')}}"><span class="uk-badge">Déconnexion</span></a></li>
+                <li class="nav-item boutton" onclick="openNav()"><img src="{{ asset('img/panier.png')}}" width="75" height="75" class="d-inline-block align-top" alt=""></li>
+                    <div id="mySidepanel" class="sidepanel">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <div class="panier">
+                    <h2>Mon panier</h2>
+                    {% if items is defined %}
+                        {% if items | length > 0 %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nom du plat</th>
+                                        <th>Prix unité</th>
+                                        <th>Quantité</th>
+                                        <th>Prix: </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                        <tr>
+                                            <td>{{ item.plat.nom }}</td>
+                                            <td>{{ item.plat.prix }} €</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.plat.prix * item.quantity }} €</td>
+                                            <td>
+                                                <a href="{{ path('panier_remove', {'id': restaurant.id, 'idPlat': item.plat.id}) }}" class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4" class="text-right">
+                                            Total :
+                                        </th>
+                                        <th>{{ total }} €</th>
+                                        <th> <button>Commander</button></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        {% else %}
+                            <p>Votre panier est vide ! Vite commander des plats !</p>
+                        {% endif %}
+                        {% endif %}
                 </ul>
 
 

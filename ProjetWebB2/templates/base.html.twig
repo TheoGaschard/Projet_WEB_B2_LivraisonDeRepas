@@ -10,8 +10,9 @@
     </head>
     <body>
 
+
         {% block header %}
-                {{ include('header.html.twig') }}
+        {{ include('header.html.twig') }}
         {% endblock %}
 
         {% block body %}{% endblock %}
@@ -20,6 +21,8 @@
         {{ include('footer.html.twig') }}
         {% endblock %}
         
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <script src="{{ asset('js/projet.js')}}"></script>
+        {% endblock %}
     </body>
 </html>
