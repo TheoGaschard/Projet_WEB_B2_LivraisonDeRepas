@@ -3,6 +3,7 @@
 namespace App\Service\Panier;
 
 use App\Repository\PlatRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PanierService
@@ -17,7 +18,7 @@ class PanierService
         $this->platRepository = $platRepository;
     }
 
-    public function add(int $id)
+    public function add(int $id, Request $request)
     {
         $panier = $this->session->get('panier', []);
 
@@ -25,7 +26,7 @@ class PanierService
             $panier[$id] = 0;
         }
 
-        $panier[$id]++;
+        $panier[$id] += $request->query->get('quantity');
 
         $this->session->set('panier', $panier);
     }
@@ -39,6 +40,11 @@ class PanierService
         }
 
         $this->session->set('panier', $panier);
+    }
+
+    public function removeAll()
+    {
+        $this->session->set('panier', []);
     }
 
     public function getAll(): array

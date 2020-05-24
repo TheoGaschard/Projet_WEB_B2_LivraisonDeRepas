@@ -62,6 +62,22 @@ a{
 
 }
 
+.panel-heading{
+    background-color: #f5f5f5;
+}
+
+.panel{
+    border: 1px solid #ddd;
+}
+.paiement{
+    background-color: aliceblue;
+    text-align: center;
+}
+
+body { margin-top:20px; }
+.panel-title {display: inline;font-weight: bold;}
+.checkbox.pull-right { margin: 0; }
+.pl-ziro { padding-left: 0px; }
 
  /* The sidepanel menu */
  .sidepanel {

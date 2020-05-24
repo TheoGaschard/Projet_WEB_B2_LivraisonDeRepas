@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ restaurant.nom }}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<!DOCTYPE html>
+    <head>
+        <title>{{ restaurant.nom }}</title>
+        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <meta charset="utf-8">
+    </head> 
+<body>
+
+
+
+      <div class="background-resto">
+
+        <h1 class="title">Votre commande {{ app.user.nom }}</h1>
+
+        <div class="information">
+        <h2>Détails de la livraison</h2>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Nom: {{ app.user.nom }} </li>
+                <li class="list-group-item">Prenom: {{ app.user.prenom }}</li>
+                <li class="list-group-item"> {{ app.user.addresse }} </li>
+                <li class="list-group-item">{{ app.user.ville }}</li>
+                <li class="list-group-item">Délai de livraison estimé à 1h: {{ commandes.dateLivraison|format_datetime('full', 'short', locale='fr') }}</li>
+            </ul>
+        </div>
+
+        <div class="information">
+        <h2>Détails de la commande</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nom du plat</th>
+                                        <th>Prix unité</th>
+                                        <th>Quantité</th>
+                                        <th>Prix: </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for iteme in itemes %}
+                                        <tr>
+                                            <td>{{ iteme.plat.nom }}</td>
+                                            <td>{{ iteme.plat.prix }} €</td>
+                                            <td>{{ iteme.quantity }}</td>
+                                            <td>{{ iteme.plat.prix * iteme.quantity }} €</td>
+                                            <td>
+                                                <a href="{{ path('panier_remove', {'id': restaurant.id, 'idPlat': iteme.plat.id}) }}" class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4" class="text-right">
+                                            Total :
+                                        </th>
+                                        <th>{{ total }} €</th>
+                                        <th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="4" class="text-right">
+                                            Frais de livraison :
+                                        </th>
+                                        <th>{{ commandes.frais }}€</th>
+                                        <th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="4" class="text-right">
+                                            Prix à payer :
+                                        </th>
+                                        <th>{{ commandes.prix }} €</th>
+                                        <th>
+                                    </tr>
+                                    
+                                </tfoot>
+                            </table>
+        </div>
+
+
+        <div class="information">
+        <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Détail du paiement
+                    </h3>
+                    <div class="checkbox pull-right">
+                        <label>
+                            <input type="checkbox" />
+                            Se souvenir de moi
+                        </label>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                    <div class="form-group">
+                        <label for="cardNumber">
+                             NUMERO DE CARTE</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="cardNumber" placeholder="Numéro de carte valide"
+                                required autofocus />
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7 col-md-7">
+                            <div class="form-group">
+                                <label for="expityMonth">
+                                    DATE D'EXPIRATION</label>
+                                <div class="col-xs-6 col-lg-6 pl-ziro">
+                                    <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                                </div>
+                                <div class="col-xs-6 col-lg-6 pl-ziro">
+                                    <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-5 col-md-5 pull-right">
+                            <div class="form-group">
+                                <label for="cvCode">
+                                    CV CODE</label>
+                                <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+                <div class="paiement">{{ commandes.prix }} € Paiement</div>
+
+
+            <br/>
+            <a href="{{ path('success', {'id': restaurant.id, 'idCommande': idCommande}) }}">
+            <div class="btn btn-success btn-lg btn-block" role="button">Payer</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+</div>
+
+      </div>
+
+
+
+</body>
+</html>
+
+{% endblock %}

@@ -18,4 +18,6 @@ class RestaurateurController extends AbstractController
             'restaurants' => $restaurantRepository->findAll(),
         ]);
     }
+
+    
 }

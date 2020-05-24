@@ -12,6 +12,10 @@
                 <ul class="nav justify-content-end">
                 <li class="nav-item boutton">Bonjour {{ app.user.nom }} </li>
                 <li class="nav-item boutton"><a href="{{ path('app_logout')}}"><span class="uk-badge">Déconnexion</span></a></li>
+
+                {% if is_granted('ROLE_CLIENT') %}
+                
+
                 <li class="nav-item boutton" onclick="openNav()"><img src="{{ asset('img/panier.png')}}" width="75" height="75" class="d-inline-block align-top" alt=""></li>
                     <div id="mySidepanel" class="sidepanel">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -49,13 +53,19 @@
                                             Total :
                                         </th>
                                         <th>{{ total }} €</th>
-                                        <th> <button>Commander</button></th>
-                                    </tr>
+                                        <th>
+                                            {{ include('platCommande/_form.html.twig') }}
+                                        </th>
                                 </tfoot>
                             </table>
                         {% else %}
                             <p>Votre panier est vide ! Vite commander des plats !</p>
                         {% endif %}
+
+                        {% else %}
+                                <p>Votre panier est vide ! Vite commander des plats dans les restaurants !</p>
+                        {% endif %}
+
                         {% endif %}
                 </ul>
 

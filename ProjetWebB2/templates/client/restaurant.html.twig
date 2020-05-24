@@ -33,10 +33,13 @@
                 <h5 class="card-title">{{ plat.nom }}</h5>
                 <p class="card-text">{{ plat.description }}</p>
                 <p class="card-text">{{ plat.prix }} €</p>
-                    <a href="{{ path('panier_add', {'id': restaurant.id, 'idPlat' : plat.id }) }}" class="btn btn-success float-right">
-                        <i class="fas fa-shopping-cart mr-1"></i>
-                        Ajouter au panier
-                    </a>                
+                
+                <form action="{{ path('panier_add', {'id': restaurant.id, 'idPlat' : plat.id }) }}" method="get">
+
+                                Quantité <input type="number" style="width: 30%" max="99" min="1" name="quantity" value="1"/>
+                        <button class="btn btn-secondary">Ajouter au panier</button>
+                        
+                </form>                
                     </div>
                 </div>
             </li>

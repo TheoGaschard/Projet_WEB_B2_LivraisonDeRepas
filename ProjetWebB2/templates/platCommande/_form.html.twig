@@ -1,0 +1,8 @@
+
+{{ form_start(form) }}
+        {% for item in items %}
+    {{ form_row(form.quantite, {'value' : item.quantity }) }}
+        {% endfor %}
+
+
+{{ form_end(form) }}

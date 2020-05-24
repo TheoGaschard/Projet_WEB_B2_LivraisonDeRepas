@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -47,6 +49,20 @@ class Plat
      * @ORM\Column(type="integer")
      */
     private $idRestaurant;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PlatCommande", mappedBy="plat")
+     */
+    private $platCommandes;
+
+    public function __construct()
+    {
+        $this->commande = new ArrayCollection();
+        $this->platCommandes = new ArrayCollection();
+    }
+
+
+
 
     public function getId(): ?int
     {
@@ -129,4 +145,38 @@ class Plat
     {
         $metadata->addPropertyConstraint('prix', new Assert\Positive());
     }
+
+    /**
+     * @return Collection|PlatCommande[]
+     */
+    public function getPlatCommandes(): Collection
+    {
+        return $this->platCommandes;
+    }
+
+    public function addPlatCommande(PlatCommande $platCommande): self
+    {
+        if (!$this->platCommandes->contains($platCommande)) {
+            $this->platCommandes[] = $platCommande;
+            $platCommande->setPlat($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlatCommande(PlatCommande $platCommande): self
+    {
+        if ($this->platCommandes->contains($platCommande)) {
+            $this->platCommandes->removeElement($platCommande);
+            // set the owning side to null (unless already changed)
+            if ($platCommande->getPlat() === $this) {
+                $platCommande->setPlat(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 }

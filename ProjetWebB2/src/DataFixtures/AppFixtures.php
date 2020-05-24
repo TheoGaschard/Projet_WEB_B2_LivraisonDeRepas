@@ -38,7 +38,9 @@ class AppFixtures extends Fixture
                     ->setType("fast-food")
                     ->setAdresse("5 rue du moulin")
                     ->setDescription("Fast food le plus répandu et culte.")
-                    ->setImage("https://dirigeants-entreprise.com/images/t5714-800-800-80.jpg");
+                    ->setImage("https://dirigeants-entreprise.com/images/t5714-800-800-80.jpg")
+                    ->setEmail('macdo@gmail.com')
+                    ->setIdRestaurateur(3);
 
             $manager->persist($restaurant);
 
@@ -47,7 +49,9 @@ class AppFixtures extends Fixture
                     ->setType("Tacos/Kebab")
                     ->setAdresse("7 rue du moulin")
                     ->setDescription("Envie d’un bon tacos? Commandez chez le meilleur Tacos de la région.")
-                    ->setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQs3kFgbE5PGGVYq6LdCLxevkinZu59QZdVAGbs2h8lgAlePUbe");
+                    ->setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQs3kFgbE5PGGVYq6LdCLxevkinZu59QZdVAGbs2h8lgAlePUbe")
+                    ->setEmail('tacos@gmail.com')
+                    ->setIdRestaurateur(4);
 
             $manager->persist($restaurant);
         
@@ -56,7 +60,9 @@ class AppFixtures extends Fixture
                     ->setType("Asiatique")
                     ->setAdresse("2 rue du moulin")
                     ->setDescription("Spécialités asiatiques")
-                    ->setImage("https://www.nippon.com/fr/ncommon/contents/japan-data/174999/174999.jpg");
+                    ->setImage("https://www.nippon.com/fr/ncommon/contents/japan-data/174999/174999.jpg")
+                    ->setEmail('sushi@gmail.com')
+                    ->setIdRestaurateur(5);
 
             $manager->persist($restaurant);
         
