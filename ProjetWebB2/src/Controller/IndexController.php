@@ -61,7 +61,7 @@ public function loginRedirectAction(Request $request)
 {
     if($this->isGranted('ROLE_ADMIN'))
     {
-        return $this->redirectToRoute('admin');
+        return $this->redirectToRoute('easyadmin');
     }
     else if($this->isGranted('ROLE_RESTAURATEUR'))
     {
