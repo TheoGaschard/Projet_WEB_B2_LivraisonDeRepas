@@ -1,20 +1,41 @@
-{% extends 'base.html.twig' %}
+{% extends '@EasyAdmin/default/layout.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block main %}
+    <h1>Dashboard</h1>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="rowDashboard">
+<div class="card text-center" style="width: 14rem;">
+  <div class="card-body">
+    <h5 class="card-title">Nombre de restaurant</h5>
+    <p class="card-text">{{ restaurants }}</p>
+  </div>
+</div>
+<div class="card text-center" style="width: 14rem;">
+  <div class="card-body">
+    <h5 class="card-title">Nombre de commandes passées</h5>
+    <p class="card-text">{{ commandePasse }}</p>
+  </div>
+</div>
+<div class="card text-center" style="width: 14rem;">
+  <div class="card-body">
+    <h5 class="card-title">Nombre de commandes en cours</h5>
+    <p class="card-text">{{ commandeCours }}</p>
+  </div>
+  </div>
+<div class="card text-center" style="width: 14rem;">
+  <div class="card-body">
+    <h5 class="card-title">Nombre de commandes terminées</h5>
+    <p class="card-text">{{ commandeFinis }}</p>
+  </div>
+  </div>
+<div class="card text-center" style="width: 14rem;">
+  <div class="card-body">
+    <h5 class="card-title">Revenus total</h5>
+    <p class="card-text">{{ revenus }}</p>
+  </div>
+</div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/steve/Desktop/Projet_DevWebB2/Projet_WEB_B2_LivraisonDeRepas/ProjetWebB2/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/steve/Desktop/Projet_DevWebB2/Projet_WEB_B2_LivraisonDeRepas/ProjetWebB2/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-    </ul>
+
 </div>
 {% endblock %}

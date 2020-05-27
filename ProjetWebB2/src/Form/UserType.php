@@ -51,8 +51,9 @@ class UserType extends AbstractType
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmer mot de passe'],
             ])
-            ->add('nom')
-            ->add('adresse', TextType::class, ['label' => 'Adresse'])
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add('addresse', TextType::class, ['label' => 'Adresse'])
             ->add('ville', TextType::class, ['label' => 'Ville'] )
             ->add('valider', SubmitType::class)
         ;

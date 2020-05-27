@@ -51,11 +51,6 @@
                                             <td>{{ iteme.plat.prix }} €</td>
                                             <td>{{ iteme.quantity }}</td>
                                             <td>{{ iteme.plat.prix * iteme.quantity }} €</td>
-                                            <td>
-                                                <a href="{{ path('panier_remove', {'id': restaurant.id, 'idPlat': iteme.plat.id}) }}" class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
