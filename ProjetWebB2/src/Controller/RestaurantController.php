@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/restaurateur/restaurant")
@@ -19,10 +20,12 @@ class RestaurantController extends AbstractController
     /**
      * @Route("/", name="restaurant_index", methods={"GET"})
      */
-    public function index(RestaurantRepository $restaurantRepository): Response
+    public function index(RestaurantRepository $restaurantRepository,UserInterface $user): Response
     {
         return $this->render('restaurant/index.html.twig', [
-            'restaurants' => $restaurantRepository->findAll(),
+            'restaurants' => $restaurantRepository->findby([
+                'idRestaurateur' => $user->getId()
+])
         ]);
     }
 
@@ -62,9 +65,8 @@ class RestaurantController extends AbstractController
     /**
      * @Route("/{id}/edit", name="restaurant_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, EntityManagerInterface $em): Response
+    public function edit(Request $request, EntityManagerInterface $em, Restaurant $restaurant): Response
     {
-        $restaurant = new Restaurant();
         $user = $this->getUser();
 
         $form = $this->createForm(RestaurantType::class, $restaurant);

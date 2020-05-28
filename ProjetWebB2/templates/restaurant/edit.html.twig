@@ -5,12 +5,9 @@
 {% block body %}
     <h1>Modifier le restaurant</h1>
 
-    {% if restaurant.idRestaurateur ==  app.user.id %}
     {{ include('restaurant/_form.html.twig', {'button_label': 'Update'}) }}
-    {% else %}
-    <div>Ce n'est pas votre restaurant</div>
 
-    {% endif %}
+
 
     <a href="{{ path('restaurant_index') }}">Revenir à la liste</a>
 

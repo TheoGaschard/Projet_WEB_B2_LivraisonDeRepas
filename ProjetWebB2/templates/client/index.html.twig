@@ -23,10 +23,14 @@
 
         <ul class="card-grid">
             {% for restaurant in restaurants %}
-            <a href="{{ path('restaurant', {'id': restaurant.id}) }}">
+            <a class="lien" href="{{ path('restaurant', {'id': restaurant.id}) }}">
                 <li class="carte">
                     <div class="card widthCard">
-                    <img src={{ restaurant.image }} class="card-img-top" width="150" height="150" alt="tacos">
+                    {% if restaurant.filename %}
+                    <img src="/img/restaurants/{{ restaurant.filename }}" class="card-img-top" width="150" height="150" alt="restaurant">
+                    {% else %}
+                    <div style="height: 150px;width: 150px;text-align:center;margin:auto;" >Pas d'image pour l'instant</div>
+                    {% endif %}
                     <div class="card-body">
                     <h5 class="card-title">{{ restaurant.nom }}</h5>
                     <p class="card-text">{{ restaurant.description }}</p>

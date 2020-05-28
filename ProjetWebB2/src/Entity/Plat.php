@@ -5,11 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PlatRepository")
+ * @Vich\Uploadable()
  */
 class Plat
 {
@@ -36,9 +39,16 @@ class Plat
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=1500, nullable=true)
+     * @var file|null
+     * @Vich\UploadableField(mapping="plat_image", fileNameProperty="filename")
      */
     private $image;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $filename;
 
     /**
      * @ORM\Column(type="float")
@@ -54,6 +64,11 @@ class Plat
      * @ORM\OneToMany(targetEntity="App\Entity\PlatCommande", mappedBy="plat")
      */
     private $platCommandes;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -105,14 +120,64 @@ class Plat
         return $this;
     }
 
-    public function getImage(): ?string
+
+
+    /**
+     * Get the value of image
+     *
+     * @return  file|null
+     */ 
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    /**
+     * Set the value of image
+     *
+     * @param  file|null  $image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
     {
         $this->image = $image;
+        if (null !== $image) {
+        // Only change the updated af if the file is really uploaded to avoid database updates.
+        // This is needed when the file should be set when loading the entity.
+        if ($this->image instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+        }
+    }
+
+    /**
+     * Get the value of filename
+     *
+     * @return  string|null
+     */ 
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

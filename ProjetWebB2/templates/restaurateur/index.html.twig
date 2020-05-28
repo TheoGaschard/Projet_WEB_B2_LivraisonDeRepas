@@ -27,7 +27,7 @@
             
             {% if restaurant.idRestaurateur ==  app.user.id %}
                 <li class="carte"><div class="card" style="max-width: 265px;">
-                        <img src={{ restaurant.image }} class="card-img-top" width="150" height="150" alt="resto">
+                        <img src="/img/restaurants/{{ restaurant.filename }}" class="card-img-top" width="150" height="150" alt="resto">
                         <div class="card-body">
                         <h5 class="card-title">{{ restaurant.nom }}</h5>
                         <p class="card-text">{{ restaurant.description }}</p>

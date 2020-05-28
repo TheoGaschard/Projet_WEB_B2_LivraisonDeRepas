@@ -26,11 +26,16 @@
                 <td>{{ restaurant.adresse }}</td>
                 <td>{{ restaurant.email }}</td>
                 <td>{{ restaurant.description }}</td>
-                <td><img src={{ restaurant.image }} alt="image resto" style="height: 50px;width: 50px;"/></td>
+                {% if restaurant.filename %}
+                <td><img src="/img/restaurants/{{ restaurant.filename }}" alt="image resto" style="height: 50px;width: 50px;"/></td>
+                {% else %}
+                <td>Pas d'image</td>
+                {% endif %}
                 <td>
                     <a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Afficher</a>
                     <a href="{{ path('restaurant_edit', {'id': restaurant.id}) }}">Modifier</a>
                     <a href="{{ path('plat_index', {'id': restaurant.id}) }}">Ajouter des plats</a>
+                    {{ include('restaurant/_delete_form.html.twig') }}
                 </td>
             </tr>
 

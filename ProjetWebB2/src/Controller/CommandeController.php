@@ -21,7 +21,7 @@ class CommandeController extends AbstractController
         $commande->setStatut('En livraison');
         $entityManager->persist($commande);
         $entityManager->flush();
-        return $this->render('commande/index.html.twig', [
+        return $this->render('commande/restaurateur.html.twig', [
             'controller_name' => 'CommandeController',
         ]);
     }
@@ -40,7 +40,7 @@ class CommandeController extends AbstractController
         $commande->setStatut('Terminé');
         $entityManager->persist($commande);
         $entityManager->flush();
-        return $this->render('commande/index.html.twig', [
+        return $this->render('commande/livreur.html.twig', [
             'controller_name' => 'CommandeController',
         ]);
     }

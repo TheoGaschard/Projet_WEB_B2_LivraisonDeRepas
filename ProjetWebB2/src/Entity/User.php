@@ -55,7 +55,9 @@ class User implements UserInterface
     private $ville;
 
 
-
+    /**
+     * @see UserInterface
+     */
     public function getId(): ?int
     {
         return $this->id;

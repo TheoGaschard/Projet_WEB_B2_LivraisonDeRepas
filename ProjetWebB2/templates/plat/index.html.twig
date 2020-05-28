@@ -22,7 +22,12 @@
                 <td>{{ plat.nom }}</td>
                 <td>{{ plat.type }}</td>
                 <td>{{ plat.description }}</td>
-                <td><img src={{ plat.image }} alt="image resto" style="height: 50px;width: 50px;"/></td>
+                {% if plat.filename %}
+                
+                <td><img src="/img/plats/{{ plat.filename }}" alt="image resto" style="height: 50px;width: 50px;"/></td>
+                {% else %}
+                <td>Pas d'image pour l'instant</td>
+                {% endif %}
                 <td>{{ plat.prix }} €</td>
                 <td>
                     <a href="{{ path('plat_show', {'id': restaurant.id, 'idPlat': plat.id} ) }}">Afficher</a>
