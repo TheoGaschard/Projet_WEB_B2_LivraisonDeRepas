@@ -23,16 +23,6 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class , ['label' => 'Email'])
-            // ->add('roles', ChoiceType::class, [
-            //     'choices'  => [
-            //         'Client' => 'ROLE_CLIENT',
-            //         'Restaurateur' => 'ROLE_RESTAURATEUR',
-            //     ],
-                
-            //     'expanded' => true,
-            //     'multiple' => false,
-            //     'label' => 'Rôles' 
-            // ])
             ->add('roles', CollectionType::class, [
                 'entry_type'   => ChoiceType::class,
                 'entry_options'  => [

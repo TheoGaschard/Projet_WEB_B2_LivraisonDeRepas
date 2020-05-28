@@ -6,7 +6,9 @@ use App\Entity\Commande;
 use App\Entity\PlatCommande;
 use App\Entity\Quantity;
 use App\Entity\Restaurant;
+use App\Entity\User;
 use App\Form\PlatCommandeType;
+use App\Form\UserType;
 use App\Repository\CommandeRepository;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
@@ -33,6 +35,27 @@ class ClientController extends AbstractController
             'restaurants' => $restaurantRepository->findAll(),
         ]);
     }
+
+
+    /**
+     * @Route("/{id}/edit", name="client_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request,User $user ): Response
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('client');
+        }
+
+        return $this->render('client/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+          
 
 
     /**

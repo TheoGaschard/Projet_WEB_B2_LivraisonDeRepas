@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer ses informations{% endblock %}
+
+{% block body %}
+    <h1>Editer ses informations</h1>
+
+    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('client') }}">Revenir à la liste</a>
+
+{% endblock %}
