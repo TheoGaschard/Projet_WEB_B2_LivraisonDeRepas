@@ -75,7 +75,9 @@
                             </table>
         </div>
 
-
+            <a href="{{ url('avis', {'id': app.user.id, 'idRestaurant': restaurant.id}) }}">
+            <button class="btn btn-success btn-lg btn-block" role="button">Donner son avis du restaurant</button>
+            </a>
     
 
       </div>

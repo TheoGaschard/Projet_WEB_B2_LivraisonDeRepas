@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Avis;
 use App\Entity\Commande;
 use App\Entity\PlatCommande;
 use App\Entity\Quantity;
 use App\Entity\Restaurant;
 use App\Entity\User;
+use App\Form\AvisType;
 use App\Form\PlatCommandeType;
 use App\Form\UserType;
 use App\Repository\CommandeRepository;
@@ -174,6 +176,7 @@ class ClientController extends AbstractController
     {
         $commande = $commandeRepository->findOneBy(['id' => $idCommande]);
         $entityManager = $this->getDoctrine()->getManager();
+        // UTC+2
         $commande->setDate(new DateTime('+ 2 hour'));
         $commande->setDateLivraison(new DateTime('+ 3 hour'));
         $entityManager->persist($commande);
@@ -280,14 +283,42 @@ class ClientController extends AbstractController
 
         'text/html'
     )
-;
+    ;
 
-$mailer->send($factureClient);
-$mailer->send($commandeRestaurateur);
-$mailer->send($livreur);
+    $mailer->send($factureClient);
+    $mailer->send($commandeRestaurateur);
+    $mailer->send($livreur);
 
-return $this->render('client/success.html.twig');
+    return $this->render('client/success.html.twig');
 
 
-}
+    }
+
+    /**
+     * @Route("/avis/{id}/{idRestaurant}", name="avis", methods={"GET","POST"})
+     * @Entity("restaurant", expr="repository.find(idRestaurant)")
+     */
+    public function avis(Request $request,
+    User $user,
+    Restaurant $restaurant): Response
+    {
+        $avis = new Avis();
+        $form = $this->createForm(AvisType::class, $avis);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $avis->setUser($user);
+            $avis->setRestaurant($restaurant);
+
+            $entityManager->persist($avis);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('client');
+        }
+
+        return $this->render('client/avis.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }

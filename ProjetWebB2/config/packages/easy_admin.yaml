@@ -12,6 +12,7 @@ easy_admin:
             - { entity: 'Plat', icon: 'hamburger', label: 'Plat'}
             - { entity: 'User', icon: 'users', label: 'User'}
             - { entity: 'Commande', icon: 'folder-plus', label: 'Commande'}
+            - { entity: 'Avis', icon: 'book-open', label: 'Avis'}
 
         assets:
             # all kinds of assets are supported and linked accordingly
@@ -24,5 +25,6 @@ easy_admin:
        - App\Entity\Plat
        - App\Entity\User
        - App\Entity\Commande
+       - App\Entity\Avis
 
 
