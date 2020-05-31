@@ -7,12 +7,13 @@
                 <li class="nav-item"><a class="nav-link" href="{{ path('restaurant_index')}}"><span class="uk-badge">Mes Restaurants</span></a></li>
 
                 {% endif %}
-</ul>
+
                 {% if (app.user) %}
-                <a href="{{ path('client_edit', {'id': app.user.id} ) }}">Changer ses informations</a>
+                <li class="nav-item"><a class="nav-link" href="{{ path('user_edit', {'id': app.user.id} ) }}"><span class="uk-badge">Changer ses informations</span></a></li>
+                </ul>
                 <ul class="nav justify-content-end">
                 <li class="nav-item boutton">Bonjour {{ app.user.nom }} </li>
-                <li class="nav-item boutton"><a href="{{ path('app_logout')}}"><span class="uk-badge">Déconnexion</span></a></li>
+                <li class="nav-item boutton"><a href="{{ path('app_logout')}}"><span class="uk-badge"><button type="button" class="btn btn-danger">Déconnexion</button></span></a></li>
 
                 {% if is_granted('ROLE_CLIENT') %}
                 

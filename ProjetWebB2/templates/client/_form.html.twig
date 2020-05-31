@@ -1,4 +1,5 @@
-{{ form_start(form) }}
+ {% form_theme form 'bootstrap_4_layout.html.twig' %}
+{{ form_start(form, { 'attr': {'style': 'padding:2%'} }) }}
 
 <div style="display: none;">{{ form_row(form.email) }} </div>
 <div style="display: none;">{{ form_row(form.roles) }} </div>

@@ -91,12 +91,19 @@ footer{
     text-align: center;
 }
 
+.btn{
+    margin-top: 2%;
+}
 .rowDashboard{
     display: flex;
 }
 
 .card{
     flex:1;
+}
+
+.login{
+    padding: 6%;
 }
 
 body { margin-top:20px; }
