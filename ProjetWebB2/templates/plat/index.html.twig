@@ -32,11 +32,12 @@
                 <td>
                     <a href="{{ path('plat_show', {'id': restaurant.id, 'idPlat': plat.id} ) }}">Afficher</a>
                     <a href="{{ path('plat_edit', {'id': restaurant.id, 'idPlat': plat.id} ) }}">Editer</a>
+                    {{ include('plat/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Pas de plats dans ce restaurant, ajoutez en.</td>
             </tr>
         {% endfor %}
         </tbody>

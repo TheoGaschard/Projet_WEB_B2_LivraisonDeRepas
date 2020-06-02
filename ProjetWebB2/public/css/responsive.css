@@ -4,7 +4,7 @@
 }
 
 .background-resto{
-    padding-bottom: 10%;
+    padding-bottom: 15%;
 }
 
 .title{
@@ -104,6 +104,10 @@ footer{
 
 .login{
     padding: 6%;
+}
+
+.choix{
+    padding: 1%;
 }
 
 body { margin-top:20px; }
