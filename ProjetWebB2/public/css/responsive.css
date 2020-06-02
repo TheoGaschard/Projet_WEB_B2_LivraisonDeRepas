@@ -1,0 +1,182 @@
+.background{
+    height: 500px;
+    background: url(img/fond.jpg) round;
+}
+
+.background-resto{
+    padding-bottom: 15%;
+}
+
+.title{
+    padding: 5%;
+    color: #000000;
+}
+
+.adress{
+    padding-left: 8%;
+}
+
+.boutton{
+    margin-left: 15px;
+}
+
+.social{
+    display: block;
+}
+
+.listSocial{
+    display: flex;
+}
+
+.flex{
+    flex: 1;
+}
+
+footer{
+    background-color: gray;
+}
+
+.carte{
+    display: grid;
+    margin: auto;
+    height: 300px;
+}
+
+.widthCard{
+    width: 265px;
+}
+
+.card-grid{
+    display: grid ;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 24px;
+}
+
+
+.lien{
+    outline: none;
+    text-decoration: none;
+    color:black;
+}
+
+.lien:link {
+    color: grey;
+}
+
+.lien:focus, .lien:hover {
+    color:grey;
+  }
+.panier{
+
+}
+.information{
+    margin:auto;
+    width: 50%;
+    margin-bottom: 5%;
+}
+.plat{
+    height: 150px;
+    width: 150px;
+    margin: auto;
+}
+.panel-heading{
+    background-color: #f5f5f5;
+}
+
+.panel{
+    border: 1px solid #ddd;
+}
+.paiement{
+    background-color: aliceblue;
+    text-align: center;
+}
+
+.btn{
+    margin-top: 2%;
+}
+.rowDashboard{
+    display: flex;
+}
+
+.card{
+    flex:1;
+}
+
+.login{
+    padding: 6%;
+}
+
+.choix{
+    padding: 1%;
+}
+
+body { margin-top:20px; }
+.panel-title {display: inline;font-weight: bold;}
+.checkbox.pull-right { margin: 0; }
+.pl-ziro { padding-left: 0px; }
+
+ /* The sidepanel menu */
+ .sidepanel {
+    height: 350px; 
+    width: 0; 
+    position: fixed; 
+    z-index: 1; 
+    background-color: darkgray;
+    overflow-x: hidden; 
+    padding-top: 60px; 
+    transition: 0.5s;
+    margin-top: 78px;
+  }
+  
+  /* The sidepanel links */
+  .sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidepanel a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* Style the button that is used to open the sidepanel */
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+  
+  .openbtn:hover {
+    background-color: #444;
+  } 
+
+
+@media screen and (max-width: 850px)
+
+{
+
+    .card-grid{
+        display: flex ;
+        flex-direction: column;
+    }
+
+    .carte{
+        margin-bottom: 10%;
+    }
+}

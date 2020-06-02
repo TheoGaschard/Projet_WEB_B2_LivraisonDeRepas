@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurant {{ restaurant.nom }}{% endblock %}
+
+{% block body %}
+    <h1>Restaurant {{ restaurant.nom }}</h1>
+
+    {% if restaurant.idRestaurateur ==  app.user.id %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ restaurant.nom }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ restaurant.type }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ restaurant.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ restaurant.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ restaurant.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% else %}
+
+    <div>Ce n'est pas votre restaurant</div>
+
+    {% endif %}
+
+
+
+    <a href="{{ path('restaurant_index') }}">Revenir à la liste des restaurants</a>
+
+    {% if restaurant.idRestaurateur ==  app.user.id %}
+    <a href="{{ path('restaurant_edit', {'id': restaurant.id}) }}">Modifier votre restaurant</a>
+    <a href="{{ path('plat_index', {'id': restaurant.id}) }}">Ajouter des plats</a>
+    
+    {% endif %}
+
+    {{ include('restaurant/_delete_form.html.twig') }}
+{% endblock %}

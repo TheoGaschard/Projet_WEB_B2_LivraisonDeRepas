@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ restaurant.nom }}{% endblock %}
+
+{% block body %}
+
+      <div class="background-resto">
+
+        <h1 class="title">{{ restaurant.nom }}</h1>
+
+        <tbody>
+            <ul class="card-grid">
+        {% for plat in plats %}
+
+            <li class="carte">
+                <div class="card widthCard" style="text-align:center;">
+                {% if plat.filename %}
+                <img src="/img/plats/{{ plat.filename }}" class="card-img-top plat" alt="image plat">
+                {% else %}
+                <div style="height: 50px;width: 50px;">Pas d'image pour l'instant</div>
+                {% endif %}
+                <div class="card-body">
+                <h5 class="card-title">{{ plat.nom }}</h5>
+                <p class="card-text">{{ plat.description }}</p>
+                <p class="card-text">{{ plat.prix }} €</p>
+                
+                <form action="{{ path('panier_add', {'id': restaurant.id, 'idPlat' : plat.id }) }}" method="get">
+
+                                Quantité <input type="number" style="width: 30%" max="99" min="1" name="quantity" value="1"/>
+                        <button class="btn btn-secondary" style="margin-top:10%;">Ajouter au panier</button>
+                        
+                </form>                
+                    </div>
+                </div>
+            </li>
+        {% else %}
+            <tr>
+                <td colspan="7">Ce restaurant ne possède pas encore de plats</td>
+            </tr>
+        {% endfor %}
+            </ul>
+        </tbody>
+
+      </div>
+<a href="{{ path('client')}}"><div class="choix"><button type="button" class="btn btn-danger">Retour choix restaurant</button></div></a>
+
+
+</body>
+</html>
+
+{% endblock %}

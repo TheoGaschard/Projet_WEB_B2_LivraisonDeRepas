@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Plat{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau Plat</h1>
+
+    {{ include('plat/_form.html.twig') }}
+
+    <a href="{{ path('plat_index', {'id': restaurant.id}) }}">Retour à la liste</a>
+{% endblock %}

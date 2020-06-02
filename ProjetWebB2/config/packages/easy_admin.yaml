@@ -1,0 +1,30 @@
+easy_admin:
+    site_name: 'EatHome'
+
+    design:
+        menu:
+            - label: Dashboard
+              icon: dashboard
+              route: admin_dashboard
+              default: true
+            - label: 'Manager'
+            - { entity: 'Restaurant', icon: 'utensils', label: 'Restaurant'}
+            - { entity: 'Plat', icon: 'hamburger', label: 'Plat'}
+            - { entity: 'User', icon: 'users', label: 'User'}
+            - { entity: 'Commande', icon: 'folder-plus', label: 'Commande'}
+            - { entity: 'Avis', icon: 'book-open', label: 'Avis'}
+
+        assets:
+            # all kinds of assets are supported and linked accordingly
+            css:
+                - 'css/responsive.css'
+
+    entities:
+       # List the entity class name you want to manage
+       - App\Entity\Restaurant
+       - App\Entity\Plat
+       - App\Entity\User
+       - App\Entity\Commande
+       - App\Entity\Avis
+
+

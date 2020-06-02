@@ -1,0 +1,85 @@
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="{{ asset('img/logo.png')}}" width="175" height="175" class="d-inline-block align-top" alt="">
+        </a>
+        <ul class="navbar-nav">
+                {% if is_granted('ROLE_RESTAURATEUR') %}
+                <li class="nav-item"><a class="nav-link" href="{{ path('restaurant_index')}}"><span class="uk-badge">Mes Restaurants</span></a></li>
+
+                {% endif %}
+
+                {% if (app.user) %}
+                <li class="nav-item"><a class="nav-link" href="{{ path('user_edit', {'id': app.user.id} ) }}"><span class="uk-badge">Changer ses informations</span></a></li>
+                </ul>
+                <ul class="nav justify-content-end">
+                <li class="nav-item boutton">Bonjour {{ app.user.nom }} </li>
+                <li class="nav-item boutton"><a href="{{ path('app_logout')}}"><span class="uk-badge"><button type="button" class="btn btn-danger">Déconnexion</button></span></a></li>
+
+                {% if is_granted('ROLE_CLIENT') %}
+                
+
+                <li class="nav-item boutton" onclick="openNav()"><img src="{{ asset('img/panier.png')}}" width="75" height="75" class="d-inline-block align-top" alt=""></li>
+                    <div id="mySidepanel" class="sidepanel">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <div class="panier">
+                    <h2>Mon panier</h2>
+                    {% if items is defined %}
+                        {% if items | length > 0 %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nom du plat</th>
+                                        <th>Prix unité</th>
+                                        <th>Quantité</th>
+                                        <th>Prix: </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                        <tr>
+                                            <td>{{ item.plat.nom }}</td>
+                                            <td>{{ item.plat.prix }} €</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.plat.prix * item.quantity }} €</td>
+                                            <td>
+                                                <a href="{{ path('panier_remove', {'id': restaurant.id, 'idPlat': item.plat.id}) }}" class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-dumpster"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4" class="text-right">
+                                            Total :
+                                        </th>
+                                        <th>{{ total }} €</th>
+                                        <th>
+                                            {{ include('platCommande/_form.html.twig') }}
+                                        </th>
+                                </tfoot>
+                            </table>
+                        {% else %}
+                            <p>Votre panier est vide ! Vite commander des plats !</p>
+                        {% endif %}
+
+                        {% else %}
+                                <p>Votre panier est vide ! Vite commander des plats dans les restaurants !</p>
+                        {% endif %}
+
+                        {% endif %}
+                </ul>
+
+
+                {% else %}
+                <ul class="nav justify-content-end">
+                    <li class="nav-item boutton">
+                        <button type="button" class="btn btn-secondary btn-lg"><img src="img/accueil.png" width="56" height="56" class="d-inline-block align-top" alt=""> Connexion</button>
+                    </li>
+                    <li class="nav-item boutton">
+                        <button type="button" class="btn btn-secondary btn-lg"><img src="img/menu.png" width="56" height="56" class="d-inline-block align-top" alt=""> Menu</button>
+                    </li>
+                </ul>
+                {% endif %}
+      </nav>

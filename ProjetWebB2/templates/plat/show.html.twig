@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plat{% endblock %}
+
+{% block body %}
+    <h1>Plat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ plat.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ plat.nom }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ plat.type }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ plat.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="/img/plats/{{ plat.filename }}" alt="image resto" style="height: 50px;width: 50px;"/></td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ plat.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('plat_index', {'id': restaurant.id}) }}">Retour à la liste</a>
+
+    <a href="{{ path('plat_edit', {'idPlat': plat.id, 'id': restaurant.id}) }}">Editer</a>
+
+    {{ include('plat/_delete_form.html.twig') }}
+{% endblock %}

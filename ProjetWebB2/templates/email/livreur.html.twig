@@ -1,0 +1,93 @@
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <meta charset="utf-8">
+    </head> 
+<body>
+
+{{ restaurant.nom }}
+
+      <div class="background-resto">
+
+        <h1 class="title">Votre commande à livrer</h1>
+
+        <div>Bonjour voici la commande à livrer dans les plus brefs délai,
+         on vous joint ci-joint l'adresse du restaurant et du client.
+         Lorsque vous aurez finit de livrer, pouvez vous appuyer sur le bouton
+         pour terminer la commande.</div>
+
+
+        
+        <div class="information">
+        <h2>Détails du restaurant</h2>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Nom: {{ restaurant.nom }} </li>
+                <li class="list-group-item">Adresse: {{ restaurant.adresse }}</li>
+                <li class="list-group-item">Email {{ restaurant.email }} </li>
+            </ul>
+        </div>
+         
+        <div class="information">
+        <h2>Détails de la livraison</h2>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Nom: {{ app.user.nom }} </li>
+                <li class="list-group-item">Prenom: {{ app.user.prenom }}</li>
+                <li class="list-group-item"> {{ app.user.addresse }} </li>
+                <li class="list-group-item">{{ app.user.ville }}</li>
+                <li class="list-group-item">Délai de livraison estimé à 1h: {{ commandes.dateLivraison|format_datetime('full', 'short', locale='fr') }}</li>
+
+            </ul>
+        </div>
+
+        <div class="information">
+        <h2>Détails de la commande n°{{ commandes.id }}</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nom du plat</th>
+                                        <th>Prix unité</th>
+                                        <th>Quantité</th>
+                                        <th>Prix: </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for iteme in itemes %}
+                                        <tr>
+                                            <td>{{ iteme.plat.nom }}</td>
+                                            <td>{{ iteme.plat.prix }} €</td>
+                                            <td>{{ iteme.quantity }}</td>
+                                            <td>{{ iteme.plat.prix * iteme.quantity }} €</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4" class="text-right">
+                                            Total :
+                                        </th>
+                                        <th>{{ total }} €</th>
+                                        <th>
+                                    </tr>
+                                    
+                                </tfoot>
+                            </table>
+        </div>
+            <a href="{{ url('commandeFinis', {'id': commandes.id}) }}">
+            <button class="btn btn-success btn-lg btn-block" role="button">Commande livré</button>
+            </a>
+
+
+<div>Merci de travailler avec nous, cordialement.</div>
+    
+
+      </div>
+
+
+
+</body>
+</html>
