@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -35,14 +37,25 @@ class Avis
     private $commentaire;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="avis")
      */
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Restaurant", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="avis")
      */
     private $restaurant;
+
+
+    public function __construct()
+    {
+        $this->user = new ArrayCollection();
+        $this->restaurant = new ArrayCollection();
+    }
+
+
+
+
 
     public function getId(): ?int
     {
@@ -96,4 +109,8 @@ class Avis
 
         return $this;
     }
+
+
+
+
 }
